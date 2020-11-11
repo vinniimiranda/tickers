@@ -9,6 +9,8 @@ export const Container = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: .5rem;
+
+  height: 400px;
   
 `;
 

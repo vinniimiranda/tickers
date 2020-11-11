@@ -14,6 +14,7 @@ export interface IndicatorInterface {
   pl: number,
   pvp: number,
   dy: number,
+  createdAt: string
 }
 
 interface Papers {
@@ -47,7 +48,7 @@ function App() {
         <Search value={filter} onChange={({ target }) => setFilter(target.value)}></Search>
         <Grid>
           {papers?.filter(({ name }) => name.toLowerCase().match(filter.toLowerCase())).map(({ code, imageUrl, name, indicators }) => (
-            <Ticker name={name} code={code} imageUrl={imageUrl} indicators={indicators[0]} />
+            <Ticker key={code} name={name} code={code} imageUrl={imageUrl} indicators={indicators} />
           ))}
         </Grid>
 
