@@ -39,7 +39,7 @@ function App() {
       <div style={{
         display: 'flex',
         flexDirection: 'column',
-        padding: '0 2rem'
+        padding: '0 .5rem'
       }}>
        <Search value={filter} onChange={({ target }) => setFilter(target.value)}></Search>
         <Grid>
