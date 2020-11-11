@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   box-shadow: 0px 0px 20px -5px rgba(0, 0, 0, .1);
-  background-color: #ffff;
+  background-color: ${({ theme}) => theme.palette.background.main };
   border-radius: 1rem;
   display: flex;
   flex-direction: column;
@@ -25,10 +25,10 @@ export const TickerLogo = styled.img`
 
 export const TickerCode = styled.span`
   font-size: 1rem;
-  background-color: #1db2db;
+  background-color: ${prop => prop.theme.palette.primary.main};
   padding: .4rem;
   border-radius: 4px;
-  color: #fff;
+  color: ${prop => prop.theme.palette.primary.contrastText};
   justify-self: flex-end; 
 `
 

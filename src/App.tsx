@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import { ThemeProvider } from 'styled-components';
+
+import { defaultTheme } from './styles/Theme'
 import Grid from './components/Grid';
 import Header from './components/Header';
 import Search from './components/Search';
@@ -34,14 +37,14 @@ function App() {
   }, [])
 
   return (
-    <>
+    <ThemeProvider theme={defaultTheme}>
       <Header></Header>
       <div style={{
         display: 'flex',
         flexDirection: 'column',
         padding: '0 .5rem'
       }}>
-       <Search value={filter} onChange={({ target }) => setFilter(target.value)}></Search>
+        <Search value={filter} onChange={({ target }) => setFilter(target.value)}></Search>
         <Grid>
           {papers?.filter(({ name }) => name.toLowerCase().match(filter.toLowerCase())).map(({ code, imageUrl, name, indicators }) => (
             <Ticker name={name} code={code} imageUrl={imageUrl} indicators={indicators[0]} />
@@ -49,7 +52,7 @@ function App() {
         </Grid>
 
       </div>
-    </>
+    </ThemeProvider>
   );
 }
 

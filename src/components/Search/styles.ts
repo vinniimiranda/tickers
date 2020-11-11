@@ -7,7 +7,7 @@ export const Container = styled.div`
   margin: 2rem 0;
   `;
 export const Input = styled.input`
-  border: 2px solid #1db2db;
+  border: 2px solid ${prop => prop.theme.palette.primary.main};
   padding: .8rem .85rem;
   border-radius: .3rem;
   outline: 0;

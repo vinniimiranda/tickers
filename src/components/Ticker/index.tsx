@@ -12,7 +12,7 @@ type TickerProps = {
 
 const Ticker: React.FC<TickerProps> = ({ name, imageUrl, code, indicators }) => {
   return <Container>
-    <TickerName>{name}</TickerName>
+    <TickerName>{name.toLowerCase()}</TickerName>
     <TickerLogo src={imageUrl} alt={`${name} Logo`} />
     <TickerCode>{code}</TickerCode>
     <Indicators>
