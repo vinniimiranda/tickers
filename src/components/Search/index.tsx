@@ -1,4 +1,5 @@
 import React from 'react';
+import { DebounceInput } from 'react-debounce-input';
 
 import { Container, Input } from './styles';
 
@@ -7,9 +8,15 @@ type SearchProps = {
   onChange: (params: any) => void;
 }
 
-const Search: React.FC<SearchProps> = ({ value, onChange}) => {
+const Search: React.FC<SearchProps> = ({ value, onChange }) => {
   return <Container>
-    <Input value={value} onChange={onChange} placeholder="Pesquisar" />
+    <DebounceInput
+      minLength={3}
+      debounceTimeout={300}
+      value={value}
+      onChange={onChange}
+      element={Input}
+      placeholder="Pesquisar" />
   </Container>;
 }
 

@@ -7,6 +7,7 @@ import Header from './components/Header';
 import Search from './components/Search';
 import Ticker from './components/Ticker';
 import Http from './services/Http';
+import Sorting from './components/Sorting';
 
 export interface IndicatorInterface {
   price: number,
@@ -17,7 +18,7 @@ export interface IndicatorInterface {
   createdAt: string
 }
 
-interface Papers {
+interface TickerInterface {
   code: string
   name: string,
   imageUrl: string
@@ -25,17 +26,20 @@ interface Papers {
 }
 
 function App() {
-  const [papers, setPapers] = useState<Papers[]>()
+  const [tickers, setTickers] = useState<TickerInterface[]>()
   const [filter, setFilter] = useState('')
+  const [sort, setSort] = useState('')
+  const [direction, setDirection] = useState('desc')
+
   useEffect(() => {
-    async function getPapers() {
-      const { data } = await Http.get('/tickers?limit=200')
-      setPapers(data.items)
+    async function getTickers() {
+      const { data } = await Http.get(`/tickers?limit=20&name=${filter}&order=${sort}&direction=${direction}`)
+      setTickers(data.items)
     }
 
-    getPapers()
+    getTickers()
 
-  }, [])
+  }, [filter, sort, direction])
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -46,8 +50,9 @@ function App() {
         padding: '0 .5rem'
       }}>
         <Search value={filter} onChange={({ target }) => setFilter(target.value)}></Search>
+        <Sorting direction={direction} setDirection={setDirection} sort={sort} setSort={setSort} />
         <Grid>
-          {papers?.filter(({ name }) => name.toLowerCase().match(filter.toLowerCase())).map(({ code, imageUrl, name, indicators }) => (
+          {tickers?.map(({ code, imageUrl, name, indicators }) => (
             <Ticker key={code} name={name} code={code} imageUrl={imageUrl} indicators={indicators} />
           ))}
         </Grid>

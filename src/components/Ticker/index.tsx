@@ -12,6 +12,8 @@ type TickerProps = {
 }
 
 const Ticker: React.FC<TickerProps> = ({ name, imageUrl, code, indicators }) => {
+  let chartIndicators = [...indicators]
+  chartIndicators = chartIndicators.sort((a,b) => a.createdAt > b.createdAt ? 1 : -1)
   return <Container>
     <TickerName>{name.toLowerCase()}</TickerName>
     <TickerLogo src={imageUrl} alt={`${name} Logo`} />
@@ -56,7 +58,7 @@ const Ticker: React.FC<TickerProps> = ({ name, imageUrl, code, indicators }) => 
       </div>
     </Indicators>
 
-    <Stacked data={indicators.sort((a,b) => a.createdAt > b.createdAt ? 1 : -1)} />
+    <Stacked data={chartIndicators} />
   </Container>;
 }
 
