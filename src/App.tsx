@@ -42,8 +42,26 @@ function App() {
 
   useEffect(() => {
     async function getTickers() {
-      const { data } = await Http.get(`/tickers?limit=20&name=${filter}&order=${sort}&direction=${direction}`)
-      setTickers(data.docs)
+      if (filter.match(/\d/g)) {
+        let code: any = filter
+        if (filter.match(',')) {
+          code = filter.split(',')
+        }
+        const { data } = await Http({
+          url: `/tickers`,
+          params: {
+            limit: 100,
+            order: sort,
+            direction,
+            code
+          }
+        })
+        setTickers(data.docs)
+      }
+      else {
+        const { data } = await Http.get(`/tickers?limit=100&name=${filter}&order=${sort}&direction=${direction}`)
+        setTickers(data.docs)
+      }
     }
 
     getTickers()

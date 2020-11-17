@@ -11,10 +11,10 @@ type SortingProps = {
 
 const Sorting: React.FC<SortingProps> = ({ sort, setSort, direction, setDirection }) => {
   return <Container>
-    <Sort active={sort === 'price'} onClick={() => {
-      if (direction === 'desc' && sort !== 'price') {
-        setSort('price')
-      } else if (direction === 'desc' && sort === 'price') {
+    <Sort active={sort === 'prices.price'} onClick={() => {
+      if (direction === 'desc' && sort !== 'prices.price') {
+        setSort('prices.price')
+      } else if (direction === 'desc' && sort === 'prices.price') {
         setDirection('asc')
       } else {
         setSort('')
@@ -25,8 +25,9 @@ const Sorting: React.FC<SortingProps> = ({ sort, setSort, direction, setDirectio
         Preço
       </span>
       <div>
-        {sort === 'price' && <FaSortDown size={15} style={{
-          transform: direction === 'asc' ? 'rotateX(180deg)' : 'rotateX(0)'
+        {<FaSortDown size={15} style={{
+          transform: sort !== 'prices.price' ? 'scale(0)' : direction === 'asc' ? 'scale(1)' : 'scale(-1)',
+          transition: 'all .4s ease'
         }} />}
       </div>
     </Sort>
@@ -44,8 +45,9 @@ const Sorting: React.FC<SortingProps> = ({ sort, setSort, direction, setDirectio
         Variação
       </span>
       <div>
-        {sort === 'variation' && <FaSortUp size={15} style={{
-          transform: direction === 'asc' ? 'rotateX(180deg)' : 'rotateX(0)'
+        {<FaSortUp size={15} style={{
+          transform: sort !== 'variation' ? 'scale(0)' : direction === 'asc' ? 'scale(1)' : 'scale(-1)',
+          transition: 'all .2s ease'
         }} />}
       </div>
     </Sort>
@@ -63,8 +65,9 @@ const Sorting: React.FC<SortingProps> = ({ sort, setSort, direction, setDirectio
         Dividendo
       </span>
       <div>
-        {sort === 'dy' && <FaSortDown size={15} style={{
-          transform: direction === 'asc' ? 'rotateX(180deg)' : 'rotateX(0)'
+        {<FaSortDown size={15} style={{
+          transform: sort !== 'dy' ? 'scale(0)' : direction === 'asc' ? 'scale(1)' : 'scale(-1)',
+          transition: 'all .4s ease'
         }} />}
       </div>
     </Sort>

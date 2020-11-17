@@ -16,7 +16,7 @@ const Search: React.FC<SearchProps> = ({ value, onChange }) => {
       value={value}
       onChange={onChange}
       element={Input}
-      placeholder="Pesquisar" />
+      placeholder="Pesquisar nome ou código, separando por vírgula cada ativo" />
   </Container>;
 }
 
