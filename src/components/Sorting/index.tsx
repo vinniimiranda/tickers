@@ -11,10 +11,10 @@ type SortingProps = {
 
 const Sorting: React.FC<SortingProps> = ({ sort, setSort, direction, setDirection }) => {
   return <Container>
-    <Sort active={sort === 'indicators.price'} onClick={() => {
-      if (direction === 'desc' && sort !== 'indicators.price') {
-        setSort('indicators.price')
-      } else if (direction === 'desc' && sort === 'indicators.price') {
+    <Sort active={sort === 'price'} onClick={() => {
+      if (direction === 'desc' && sort !== 'price') {
+        setSort('price')
+      } else if (direction === 'desc' && sort === 'price') {
         setDirection('asc')
       } else {
         setSort('')
@@ -25,15 +25,15 @@ const Sorting: React.FC<SortingProps> = ({ sort, setSort, direction, setDirectio
         Preço
       </span>
       <div>
-        {sort === 'indicators.price' && <FaSortDown size={15} style={{
+        {sort === 'price' && <FaSortDown size={15} style={{
           transform: direction === 'asc' ? 'rotateX(180deg)' : 'rotateX(0)'
         }} />}
       </div>
     </Sort>
-    <Sort active={sort === 'indicators.variation'} onClick={() => {
-      if (direction === 'desc' && sort !== 'indicators.variation') {
-        setSort('indicators.variation')
-      } else if (direction === 'desc' && sort === 'indicators.variation') {
+    <Sort active={sort === 'variation'} onClick={() => {
+      if (direction === 'desc' && sort !== 'variation') {
+        setSort('variation')
+      } else if (direction === 'desc' && sort === 'variation') {
         setDirection('asc')
       } else {
         setSort('')
@@ -44,15 +44,15 @@ const Sorting: React.FC<SortingProps> = ({ sort, setSort, direction, setDirectio
         Variação
       </span>
       <div>
-        {sort === 'indicators.variation' && <FaSortUp size={15} style={{
+        {sort === 'variation' && <FaSortUp size={15} style={{
           transform: direction === 'asc' ? 'rotateX(180deg)' : 'rotateX(0)'
         }} />}
       </div>
     </Sort>
-    <Sort active={sort === 'indicators.dy'} onClick={() => {
-      if (direction === 'desc' && sort !== 'indicators.dy') {
-        setSort('indicators.dy')
-      } else if (direction === 'desc' && sort === 'indicators.dy') {
+    <Sort active={sort === 'dy'} onClick={() => {
+      if (direction === 'desc' && sort !== 'dy') {
+        setSort('dy')
+      } else if (direction === 'desc' && sort === 'dy') {
         setDirection('asc')
       } else {
         setSort('')
@@ -63,7 +63,7 @@ const Sorting: React.FC<SortingProps> = ({ sort, setSort, direction, setDirectio
         Dividendo
       </span>
       <div>
-        {sort === 'indicators.dy' && <FaSortDown size={15} style={{
+        {sort === 'dy' && <FaSortDown size={15} style={{
           transform: direction === 'asc' ? 'rotateX(180deg)' : 'rotateX(0)'
         }} />}
       </div>

@@ -18,11 +18,20 @@ export interface IndicatorInterface {
   createdAt: string
 }
 
-interface TickerInterface {
-  code: string
+export interface PriceInterface {
+  createdAt: string,
+  price: number
+}
+
+export interface TickerInterface extends Document {
   name: string,
-  imageUrl: string
-  indicators: IndicatorInterface[]
+  code: string,
+  imageUrl: string,
+  variation: number,
+  pl: number,
+  pvp: number,
+  dy: number
+  prices: PriceInterface[]
 }
 
 function App() {
@@ -34,7 +43,7 @@ function App() {
   useEffect(() => {
     async function getTickers() {
       const { data } = await Http.get(`/tickers?limit=20&name=${filter}&order=${sort}&direction=${direction}`)
-      setTickers(data.items)
+      setTickers(data.docs)
     }
 
     getTickers()
@@ -52,8 +61,8 @@ function App() {
         <Search value={filter} onChange={({ target }) => setFilter(target.value)}></Search>
         <Sorting direction={direction} setDirection={setDirection} sort={sort} setSort={setSort} />
         <Grid>
-          {tickers?.map(({ code, imageUrl, name, indicators }) => (
-            <Ticker key={code} name={name} code={code} imageUrl={imageUrl} indicators={indicators} />
+          {tickers?.map(({ ...props }) => (
+            <Ticker {...props} key={props.code} />
           ))}
         </Grid>
 

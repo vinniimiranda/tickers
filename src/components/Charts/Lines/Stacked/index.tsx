@@ -1,13 +1,14 @@
 import React from 'react'
 import { Line } from '@nivo/line'
-import { IndicatorInterface } from '../../../../App'
+import { PriceInterface } from '../../../../App'
 import moment from 'moment'
 import 'moment/locale/pt-br'
 
 moment.locale('pt-br')
 
+
 type StackedProps = {
-  data: IndicatorInterface[]
+  data: PriceInterface[]
 }
 
 const Stacked: React.FC<StackedProps> = ({ data }) => (
@@ -19,7 +20,7 @@ const Stacked: React.FC<StackedProps> = ({ data }) => (
       },
     ]}
     height={200}
-    width={400}
+    width={500}
     margin={{ top: 25, right: 40, bottom: 60, left: 60 }}
     // xScale={{ type: 'point' }}
     curve="monotoneX"
@@ -31,7 +32,7 @@ const Stacked: React.FC<StackedProps> = ({ data }) => (
       orient: 'bottom',
       legend: 'Data',
       legendOffset: 40,
-      
+
       legendPosition: 'middle'
     }}
     axisLeft={{
@@ -44,7 +45,7 @@ const Stacked: React.FC<StackedProps> = ({ data }) => (
       legendOffset: -45,
       legendPosition: 'middle'
     }}
-    
+
     pointSize={10}
     pointBorderWidth={2}
     pointBorderColor={{ from: 'serieColor' }}
